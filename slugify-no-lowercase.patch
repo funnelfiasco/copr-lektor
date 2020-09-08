@@ -1,0 +1,12 @@
+--- lektor/utils.py     2020-09-08 14:00:57.027658921 -0400
++++ lektor/utils.py        2020-09-08 14:01:40.181900492 -0400
+@@ -258,7 +258,7 @@
+     parts[-1], ext = magic_split_ext(parts[-1])
+ 
+     out = "/".join(
+-        _slugify(part) for part in parts
++        _slugify(part, lowercase=False) for part in parts
+     )
+ 
+     if ext:
+
