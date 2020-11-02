@@ -1,0 +1,11 @@
+--- a/setup.py
++++ b/setup.py
+@@ -44,7 +44,7 @@ setup(
+         'requests[security]',
+         'setuptools',
+         'watchdog',
+-        'Werkzeug<1',
++        'Werkzeug',
+     ],
+     tests_require=tests_require,
+     extras_require={
