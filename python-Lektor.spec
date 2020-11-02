@@ -6,7 +6,7 @@
 
 Name:			python-Lektor
 Version:		3.2.0.%{git_date}git%{git_rev}
-Release:		2%{?dist}
+Release:		3%{?dist}
 Summary:		A static content management system
 
 License:		BSD
@@ -15,6 +15,7 @@ URL:			https://github.com/lektor/lektor/
 Source0:                https://github.com/lektor/lektor/archive/%{git_revision}.zip
 # Pass the lowercase argument to slugify in order to make it do what I want
 Patch0:         https://raw.githubusercontent.com/funnelfiasco/copr-lektor/main/slugify-no-lowercase.patch
+Patch1:         https://raw.githubusercontent.com/funnelfiasco/copr-lektor/main/werkzeug-no-version.patch
 BuildArch:		noarch
 
 BuildRequires:	python3-devel
@@ -41,6 +42,7 @@ Requires:	python3-babel
 Requires:	python3-inifile
 Requires:	python3-click
 Requires:	python3-pathtools
+Requires:	python3-werkzeug
 Requires:	python3-yaml
 
 Provides:   python3-lektor = %{version}-%{release}
@@ -65,6 +67,7 @@ admin UI and minimal desktop app.
 rm -rf %{srcname}.egg-info
 
 %patch0 -p0
+%patch1 -p1
 
 
 %build
@@ -81,6 +84,9 @@ rm -rf %{srcname}.egg-info
 %{_bindir}/lektor
 
 %changelog
+* Mon Nov 02 2020 Ben Cotton <bcotton@fedoraproject.org> - 3.2.0.20201102git1438f54-3
+- Add explicit dependency on python3-werkzeug and remove the < 1 requirement
+
 * Tue Sep 08 2020 Ben Cotton <bcotton@fedoraproject.org> - 3.2.0.20200824git1438f54-2
 - Add a patch to disable auto-lowercase in slugs
 
